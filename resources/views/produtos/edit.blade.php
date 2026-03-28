@@ -1,12 +1,12 @@
-        <!DOCTYPE html>
-        <html lang="pt-br">
-        <head>
-            <meta charset="UTF-8">
-            <title>Cadastro de Produtos</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-            <head>
-                
-            <body class="container mt-4">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+        <body class="container mt-4">
             <h1 class="text-warning mb-4">Cabeçalho do Site</h1>
 
             <div class="mb-4">
@@ -19,16 +19,20 @@
             </div>
             <hr>
         <body>
-            <body>
-                <div class="container mt-4">
-                    <h1 class="mb-4">Cadastro de Produtos</h1>
 
-                    <form action="{{ route('produtos.store') }}" method="POST">
-                      @csrf
 
-                      <div class="mb-3">
-                        <label class="form-label">Nome</label>
-                <input type="text" name="nome" class="form-control" value="{{ old('nome') }}">
+
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Editar Produto</h1>
+
+        <form action="{{ route('produtos.update', $produto->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" name="nome" class="form-control" value="{{ old('nome', $produto->nome) }}">
                 @error('nome')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -36,7 +40,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Categoria</label>
-                <input type="text" name="categoria" class="form-control" value="{{ old('categoria') }}">
+                <input type="text" name="categoria" class="form-control" value="{{ old('categoria', $produto->categoria) }}">
                 @error('categoria')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -44,7 +48,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Marca</label>
-                <input type="text" name="marca" class="form-control" value="{{ old('marca') }}">
+                <input type="text" name="marca" class="form-control" value="{{ old('marca', $produto->marca) }}">
                 @error('marca')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -52,7 +56,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Preço</label>
-                <input type="number" step="0.01" name="preco" class="form-control" value="{{ old('preco') }}">
+                <input type="number" step="0.01" name="preco" class="form-control" value="{{ old('preco', $produto->preco) }}">
                 @error('preco')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -60,14 +64,14 @@
 
             <div class="mb-3">
                 <label class="form-label">Quantidade</label>
-                <input type="number" name="quantidade" class="form-control" value="{{ old('quantidade') }}">
+                <input type="number" name="quantidade" class="form-control" value="{{ old('quantidade', $produto->quantidade) }}">
                 @error('quantidade')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success">Cadastrar Produto</button>
-            <a href="{{ route('produtos.index') }}" class="btn btn-secondary">Ver produtos cadastrados</a>
+            <button type="submit" class="btn btn-primary">Atualizar Produto</button>
+            <a href="{{ route('produtos.index') }}" class="btn btn-secondary">Voltar</a>
         </form>
     </div>
 </body>
