@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 
 class ProdutoController extends Controller
@@ -12,23 +12,11 @@ class ProdutoController extends Controller
         return view('produtos.create');
     }
 
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-        $request->validate([
-            'nome' => 'required|max:100',
-            'categoria' => 'required|max:100',
-            'marca' => 'required|max:100',
-            'preco' => 'required|numeric',
-            'quantidade' => 'required|integer'
-        ]);
+        $dados = $request->validated();
 
-        Produto::create([
-            'nome' => $request->nome,
-            'categoria' => $request->categoria,
-            'marca' => $request->marca,
-            'preco' => $request->preco,
-            'quantidade' => $request->quantidade
-        ]);
+        Produto::create($dados);
 
         return redirect()->route('produtos.index')
             ->with('success', 'Produto cadastrado com sucesso!');
@@ -46,25 +34,12 @@ class ProdutoController extends Controller
         return view('produtos.edit', compact('produto'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ProdutoRequest $request, $id)
     {
-        $request->validate([
-            'nome' => 'required|max:100',
-            'categoria' => 'required|max:100',
-            'marca' => 'required|max:100',
-            'preco' => 'required|numeric',
-            'quantidade' => 'required|integer'
-        ]);
+        $dados = $request->validated();
 
         $produto = Produto::findOrFail($id);
-
-        $produto->update([
-            'nome' => $request->nome,
-            'categoria' => $request->categoria,
-            'marca' => $request->marca,
-            'preco' => $request->preco,
-            'quantidade' => $request->quantidade
-        ]);
+        $produto->update($dados);
 
         return redirect()->route('produtos.index')
             ->with('success', 'Produto atualizado com sucesso!');
