@@ -5,7 +5,7 @@
             <title>Cadastro de Produtos</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <head>
-        <body>
+
             <body class="container mt-4">
             <h1 class="text-warning mb-4">Cabeçalho do Site</h1>
 
@@ -20,23 +20,53 @@
             </div>
             <hr>
         <body>
-<h1>Painel de Cotações</h1>
+<div class="container mt-4">
 
-@if(session('erro'))
-    <p style="color:red;">
-        {{ session('erro') }}
-    </p>
-@endif
+    <h1 class="mb-4">Painel de Cotações</h1>
 
-@if(isset($cotacoes))
-    <h2>Dólar</h2>
-    <p>Compra: {{ $cotacoes['USDBRL']['bid'] }}</p>
-    <p>Venda: {{ $cotacoes['USDBRL']['ask'] }}</p>
+    @if(session('erro'))
+        <div class="alert alert-danger">
+            {{ session('erro') }}
+        </div>
+    @endif
 
-    <h2>Euro</h2>
-    <p>Compra: {{ $cotacoes['EURBRL']['bid'] }}</p>
-    <p>Venda: {{ $cotacoes['EURBRL']['ask'] }}</p>
-@endif
+    @if(isset($cotacoes))
+        <div class="row">
+
+            <!-- DÓLAR -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4>Dólar</h4>
+
+                        <p><strong>Compra:</strong> R$ {{ number_format((float) $cotacoes['USDBRL']['bid'], 2, ',', '.') }}</p>
+                        <p><strong>Venda:</strong> R$ {{ number_format((float) $cotacoes['USDBRL']['ask'], 2, ',', '.') }}</p>
+                        <p><strong>Máxima:</strong> R$ {{ number_format((float) $cotacoes['USDBRL']['high'], 2, ',', '.') }}</p>
+                        <p><strong>Mínima:</strong> R$ {{ number_format((float) $cotacoes['USDBRL']['low'], 2, ',', '.') }}</p>
+                        <p><strong>Atualizado:</strong> {{ $cotacoes['USDBRL']['create_date'] }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EURO -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4>Euro</h4>
+
+                        <p><strong>Compra:</strong> R$ {{ number_format((float) $cotacoes['EURBRL']['bid'], 2, ',', '.') }}</p>
+                        <p><strong>Venda:</strong> R$ {{ number_format((float) $cotacoes['EURBRL']['ask'], 2, ',', '.') }}</p>
+                        <p><strong>Máxima:</strong> R$ {{ number_format((float) $cotacoes['EURBRL']['high'], 2, ',', '.') }}</p>
+                        <p><strong>Mínima:</strong> R$ {{ number_format((float) $cotacoes['EURBRL']['low'], 2, ',', '.') }}</p>
+                        <p><strong>Atualizado:</strong> {{ $cotacoes['EURBRL']['create_date'] }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    @endif
+
+</div>
 
 </body>
 </html>
