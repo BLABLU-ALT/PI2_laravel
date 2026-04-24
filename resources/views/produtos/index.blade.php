@@ -16,6 +16,7 @@
                 <a href="/perfil/Jeziel" class="btn btn-warning btn-sm">Usuario</a>
                 <a href="/produtos" class="btn btn-warning btn-sm">Produto</a>
                 <a href="/form" class="btn btn-warning btn-sm">Formulario</a>
+                <a href="/cotacoes" class="btn btn-warning btn-sm">Cotações</a>
             </div>
             <hr>
         <body>
@@ -29,7 +30,7 @@
             </div>
         @endif
 
-        <a href="{{ route('produtos.create') }}" class="btn btn-primary mb-3">
+        <a href="{{ route('produtos.create') }}" class="btn btn-warning btn-sm">
             Novo Produto
         </a>
 
@@ -59,7 +60,7 @@
                                 Editar
                             </a>
 
-                            <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" style="display:inline-block;">
+                            <form action="{{ route('produtos.delete', $produto->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"

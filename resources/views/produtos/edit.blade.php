@@ -16,6 +16,7 @@
                 <a href="/perfil/Jeziel" class="btn btn-warning btn-sm">Usuario</a>
                 <a href="/produtos" class="btn btn-warning btn-sm">Produto</a>
                 <a href="/form" class="btn btn-warning btn-sm">Formulario</a>
+                <a href="/cotacoes" class="btn btn-info mb-3">Cotações</a>
             </div>
             <hr>
         <body>

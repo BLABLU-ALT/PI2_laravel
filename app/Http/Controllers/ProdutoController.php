@@ -45,7 +45,7 @@ class ProdutoController extends Controller
             ->with('success', 'Produto atualizado com sucesso!');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $produto = Produto::findOrFail($id);
         $produto->delete();

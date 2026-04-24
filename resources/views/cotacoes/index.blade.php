@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
             <meta charset="UTF-8">
             <title>Cadastro de Produtos</title>
@@ -20,17 +20,23 @@
             </div>
             <hr>
         <body>
-<body class="container mt-4">
+<h1>Painel de Cotações</h1>
 
-    <h2 class="mb-4">Cadastro</h2>
-    <form method="POST" action="/resultado">
-        @csrf
-        <x-input label="Nome" name="nome" type="text" />
-        <x-input label="Ano de nascimento" name="ano" type="number" />
-        <x-input label="Curso" name="curso" type="text" />
-    <x-button>
-       Enviar
-     </x-button>
-     </form>
+@if(session('erro'))
+    <p style="color:red;">
+        {{ session('erro') }}
+    </p>
+@endif
+
+@if(isset($cotacoes))
+    <h2>Dólar</h2>
+    <p>Compra: {{ $cotacoes['USDBRL']['bid'] }}</p>
+    <p>Venda: {{ $cotacoes['USDBRL']['ask'] }}</p>
+
+    <h2>Euro</h2>
+    <p>Compra: {{ $cotacoes['EURBRL']['bid'] }}</p>
+    <p>Venda: {{ $cotacoes['EURBRL']['ask'] }}</p>
+@endif
+
 </body>
 </html>
